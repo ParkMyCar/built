@@ -373,6 +373,7 @@ impl CIPlatform {
 
 fn get_build_deps(manifest_location: &path::Path) -> io::Result<Vec<(String, String)>> {
     let mut lock_buf = String::new();
+    println!("looking for Cargo.lock @ {manifest_location:?}");
     fs::File::open(manifest_location.join("Cargo.lock"))?.read_to_string(&mut lock_buf)?;
     Ok(parse_dependencies(&lock_buf))
 }
@@ -940,6 +941,8 @@ pub fn write_built_file_with_opts(
 "#
         .as_ref(),
     )?;
+
+    println!("success! wrote some stuff");
 
     macro_rules! o {
         ($i:ident, $b:stmt) => {
