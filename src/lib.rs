@@ -996,6 +996,8 @@ pub fn write_built_file_with_opts(
 pub fn write_built_file() -> io::Result<()> {
     let src = env::var("CARGO_MANIFEST_DIR").unwrap();
     let dst = path::Path::new(&env::var("OUT_DIR").unwrap()).join("built.rs");
+    eprintln!("BLAH src {src:?}, dst {dst:?}");
+    println!("BLAH src {src:?}, dst {dst:?}");
     write_built_file_with_opts(&Options::default(), src.as_ref(), &dst)?;
     Ok(())
 }
